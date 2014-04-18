@@ -45,7 +45,7 @@ class PlotServerSession(BaseHTMLSession, PersistentBackboneSession):
             'BOKEHUSER' : self.username})
 
         if self.root_url:
-            url = urljoin(self.root_url, '/bokeh/userinfo/')
+            url = urljoin(self.root_url, 'bokeh/userinfo/')
             self.userinfo = utils.get_json(self.http_session.get(url, verify=False))
         else:
             # why is this here?  It seems like we would not use this session
@@ -56,7 +56,7 @@ class PlotServerSession(BaseHTMLSession, PersistentBackboneSession):
         self.docid = None
         self.plotcontext = None
         self.apikey = None
-        self.base_url = urljoin(self.root_url, "/bokeh/bb/")
+        self.base_url = urljoin(self.root_url, "bokeh/bb/")
         self.raw_js_objs = []
         super(PlotServerSession, self).__init__()
 
@@ -78,7 +78,7 @@ class PlotServerSession(BaseHTMLSession, PersistentBackboneSession):
         self.raw_js_objs.append(obj)
 
     def load_doc(self, docid):
-        url = urljoin(self.root_url,"/bokeh/getdocapikey/%s" % docid)
+        url = urljoin(self.root_url,"bokeh/getdocapikey/%s" % docid)
         resp = self.http_session.get(url, verify=False)
         if resp.status_code == 401:
             raise Exception('HTTP Unauthorized accessing DocID "%s"' % docid)
@@ -108,7 +108,7 @@ class PlotServerSession(BaseHTMLSession, PersistentBackboneSession):
         self.add(self.plotcontext)
 
     def make_doc(self, title):
-        url = urljoin(self.root_url,"/bokeh/doc/")
+        url = urljoin(self.root_url,"bokeh/doc/")
         data = protocol.serialize_web({'title' : title})
         response = self.http_session.post(url, data=data, verify=False)
         if response.status_code == 409:
@@ -119,7 +119,7 @@ class PlotServerSession(BaseHTMLSession, PersistentBackboneSession):
         matching = [x for x in self.userinfo['docs'] \
                     if x.get('title') == title]
         docid = matching[0]['docid']
-        url = urljoin(self.root_url,"/bokeh/doc/%s/" % docid)
+        url = urljoin(self.root_url,"bokeh/doc/%s/" % docid)
         response = self.http_session.delete(url, verify=False)
         if response.status_code == 409:
             raise DataIntegrityException
@@ -223,5 +223,5 @@ class PlotServerSession(BaseHTMLSession, PersistentBackboneSession):
             m._callbacks_dirty = False
             
     def object_link(self, obj):
-        link = "/bokeh/doc/%s/%s" % (self.docid, obj._id)
+        link = "bokeh/doc/%s/%s" % (self.docid, obj._id)
         return utils.urljoin(self.base_url, link)
