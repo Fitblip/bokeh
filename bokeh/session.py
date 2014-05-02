@@ -328,8 +328,8 @@ class Session(object):
         return to_store
 
     def object_link(self, obj):
-        link = "/bokeh/doc/%s/%s" % (self.docid, obj._id)
-        return utils.urljoin(self.base_url, link)
+        link = "bokeh/doc/%s/%s" % (self.docid, obj._id)
+        return utils.urljoin(self.root_url, link)
 
 class Cloud(Session):
     def __init__(self):
