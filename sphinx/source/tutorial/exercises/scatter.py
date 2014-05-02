@@ -58,9 +58,10 @@ colors = [
     "#%02x%02x%02x" % (r, g, 150) for r, g in zip(np.floor(50+2*x), np.floor(30+2*y))
 ]
 
-# EXERCISE: use the `circle` renderer to scatter all the circles. Set the
-# 'fill_color' to the colors above, the 'line_color' to None, and the 'radius'
-# to the radii. Also try setting the fill_alpha to something less than one.
+# EXERCISE: use the `circle` (http://bokeh.pydata.org/docs/reference.html#bokeh.plotting.circle) 
+# renderer to scatter all the circles. Set the 'fill_color' to the colors above, the 'line_color' 
+# to None, and the 'radius' to the radii. Also try setting the fill_alpha to something less than 
+# one. 
 # Use TOOLS from above to set a tools parameter.
 
 # NOTE: since we are passing 'radius' as a parameter, the size of the circles
