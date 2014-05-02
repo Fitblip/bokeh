@@ -24,11 +24,14 @@ y3 = 2*f3*np.sin(theta3)
 
 # EXERCISE: output static HTML file
 
-# Create a set of tools to use
+# Create a set of tools to use (http://bokeh.pydata.org/docs/user_guide.html#tools)
 TOOLS="pan,wheel_zoom,box_zoom,reset,previewsave"
 
 # EXERCISE: create two Range1d objects to reuse in the plots. Use the [-20, 20]
 # for the bounds.
+
+x_range_range1d = None
+y_range_range1d = None
 
 # EXERCISE: Plot all the sets of points on different plots. Use the ranges above
 # for x_range and y_range. Set different colors as well. Try setting line_color
@@ -37,7 +40,7 @@ TOOLS="pan,wheel_zoom,box_zoom,reset,previewsave"
 # the value of the 'marker' parameter, "circle", "square", "triangle", etc. One
 # example is given
 scatter(x1, y1, size=12, color="red", alpha=0.5,
-        x_range=xr, y_range=yr, tools=TOOLS)
+        x_range=x_range_range1d, y_range=y_range_range1d, tools=TOOLS)
 
 # EXERCISE: Try panning and zooming one of the plots with another one visible!
 # Set the plot_width and plot_height to smaller if necessary
